@@ -6,7 +6,7 @@ object derive {
 
   def derive(t: Tree, v: String): Tree = t match{
     case Sum(l, r) => Sum(derive(l, v), derive(r, v))
-    case Mult(l, r) => Sum(Mult(derive(l, v), r), Mult(derive(r, v), l))
+    case Mult(l, r) => Sum(Mult(derive(l, v), r), Mult(l, derive(r, v)))
     case Var(n) if (v == n) => Const(1)
     case _ => Const(0) 
     
